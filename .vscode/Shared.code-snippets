@@ -1,0 +1,18 @@
+{
+	"Header Banner": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "banner",
+		"body": [
+			"/*",
+			" * ${1:${TM_FILENAME_BASE/(?!^)([A-Z])/ $1/g}}",
+			" *",
+			" * Created on $CURRENT_DAY_NAME, $CURRENT_MONTH_NAME $CURRENT_MONTH, $CURRENT_YEAR as $TM_FILENAME",
+			" *",
+			" * Copyright (c) $CURRENT_YEAR Chocobo App",
+			" * ----------------------------------------------------------------",
+			" */",
+			"",
+		],
+		"description": "Adds the Company Header Banner",
+	},
+}

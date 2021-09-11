@@ -1,0 +1,8 @@
+{
+    "WARNING": "THIS TSCONFIG.JSON IS FOR WEBPACK ONLY: This allows webpack config to be written in typescript. Go to the project root for the real one",
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "esModuleInterop": true,
+    }
+}

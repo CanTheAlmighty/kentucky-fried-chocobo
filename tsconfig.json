@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@Application": ["src/Application"],
+            "@Router": ["src/Router"],
+            "@api/*": ["src/api/*"],
+            "@app/*": ["src/app/*"],
+            "@bundle/*": ["bundle/*"],
+            "@components/*": ["src/components/*"],
+            "@hooks/*": ["src/hooks/*"],
+            "@resources/*": ["src/resources/*"],
+            "@service/*": ["src/service/*"],
+            "@screens/*": ["src/screens/*"],
+            "@state/*": ["src/state/*"],
+            "@styles/*": ["src/styles/*"],
+            "@typings/*": ["src/typings/*"],
+            "@util/*": ["src/util/*"],
+        },
+        "resolveJsonModule": true,
+        "strict": false,
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "module": "esnext",
+        "target": "es6",
+        "jsx": "react",
+        "lib": ["es5", "es6", "dom", "es2016"],
+        "typeRoots": ["./typings/types", "./node_modules/@types"],
+        "esModuleInterop": true,
+        "moduleResolution": "Node",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "./src/**/*",
+        "./typings/extensions/**/*"
+    ],
+    "exclude": [
+        "./node_modules/**", 
+    ]
+}
