@@ -27,7 +27,7 @@ const createRuntimeVariables = (settings: Settings): Record<string, any> => ({
 
 const createPlugins = (settings: Settings): WebpackPluginInstance[] => [
     // Allows loading a .html.ejs file
-    new HtmlWebpackPlugin({ template: settings.template.absolute }),
+    new HtmlWebpackPlugin({ template: settings.template.relative }),
     // Same as an extract plugin but for CSS, creates a .css file and links it on the html
     new MiniCssExtractPlugin({
         filename: `bundle.[name].${ settings.app.version }.css`,
@@ -42,7 +42,6 @@ const createPlugins = (settings: Settings): WebpackPluginInstance[] => [
         React: 'react',
         ReactDOM: 'react-dom',
         Redux: 'redux',
-        Ant: 'antd',
     })
 ]
 

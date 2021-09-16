@@ -12,6 +12,7 @@ import { RuleSetRule } from 'webpack'
 
 // Webpack Loaders
 import { loader as MiniCSSLoader } from 'mini-css-extract-plugin'
+import ReactRefreshTypeScript from 'react-refresh-typescript'
 
 // Plugin Specifics
 import { createCompileTimeDirectives } from './pluginDefine'
@@ -59,16 +60,21 @@ const createRules = (settings: Settings): RuleSetRule[] => ([
                         [
                             "module-resolver", {
                                 "root": ["."],
-                                "alias": {
+                                "alias": <Record<string, string>>{
+                                    "@Application": "./src/Application",
+                                    "@Router": "./src/Router",
                                     "@api": "./src/api",
-                                    "@app": "./src/app",
+                                    "@bundle/*": "./bundle/*",
                                     "@components": "./src/components",
                                     "@resources": "./src/resources",
+                                    "@hooks/*": "./src/hooks/*",
                                     "@screens": "./src/screens",
+                                    "@service/*": "src/service/*",
                                     "@state": "./src/state",
                                     "@styles": "./src/styles",
-                                    "@utils": "./src/utils"
-                                }
+                                    "@util": "./src/util",
+                                    "@typings/*": "./src/typings/*",
+                                },
                             }
                         ]
                     ]
@@ -84,9 +90,13 @@ const createRules = (settings: Settings): RuleSetRule[] => ([
                     experimentalFileCaching: true,
                     projectReferences: true,
                     compilerOptions: {
-                        paths: {
-                            '@bundle/*': [settings.folders.bundle]
-                        }
+                        getCustomTransformers: settings.deployment === 'hot' ? () => ({
+                            before: ReactRefreshTypeScript(),
+                        }) : undefined,
+                        transpileOnly: settings.deployment === 'hot',
+                        // paths: {
+                        //     '@bundle/*': [settings.folders.bundle]
+                        // }
                     }
                 }
             },
@@ -144,8 +154,10 @@ const createRules = (settings: Settings): RuleSetRule[] => ([
     {
         test: /\.css$/i,
         use: [
-            MiniCSSLoader,
-            'css-loader',
+            { loader: MiniCSSLoader },
+            { 
+                loader: 'css-loader'
+            }
         ]
     },
     // Stylesheet: SCSS
@@ -168,8 +180,7 @@ const createRules = (settings: Settings): RuleSetRule[] => ([
                     esModule: true,
                     modules: {
                         localIdentName: settings.optimization.cssNaming,
-                        localIdentContext: settings.folders.source,
-                        localIdentHashPrefix: 'chocobo-scss',
+                        localIdentContext: settings.folders.source.absolute,
                         exportLocalsConvention: 'camelCase'
                     },
                 }

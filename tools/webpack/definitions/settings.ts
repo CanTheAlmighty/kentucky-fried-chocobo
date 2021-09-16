@@ -19,7 +19,7 @@ interface Path {
 function Path(relative: string) {
     return {
         relative,
-        get absolute() { return resolve(relative) }
+        get absolute() { return resolve(process.cwd(), relative) }
     }
 }
 

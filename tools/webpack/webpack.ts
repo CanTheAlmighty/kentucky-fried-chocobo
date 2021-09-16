@@ -30,6 +30,7 @@ const webpack = (settings: Settings): Configuration => ({
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
+    entry: settings.entry.relative,
     context: settings.folders.source.absolute,
     module: {
         rules: createRules(settings)
@@ -53,6 +54,8 @@ const main = (env, args): Configuration => {
 
     // Create config (Read above)
     const config = webpack(settings)
+
+    console.dir(settings)
 
     // Add deploy specifics
     prepareForDeploy(config, settings)

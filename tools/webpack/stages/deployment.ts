@@ -8,9 +8,9 @@
  */
 
 // Libraries
-import { merge } from 'lodash'
 import { Configuration } from 'webpack'
 import { Configuration as DevServerConfiguration } from 'webpack-dev-server'
+import { merge } from 'webpack-merge'
 
 // Definitions
 import { Settings } from '../definitions/settings'
@@ -21,7 +21,6 @@ import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 
 const createBundledDeploy = (settings: Settings): Configuration => ({
     mode: 'production',
-    entry: [settings.entry.relative],
     optimization: {
         minimize: true,
         minimizer: [
@@ -35,12 +34,6 @@ const createBundledDeploy = (settings: Settings): Configuration => ({
         usedExports: settings.optimization.codeUsedExports,
         splitChunks: {
             cacheGroups: {
-                ant: {
-                    test: /[\\/]node_modules[\\/](antd)[\\/]/,
-                    name: 'ant',
-                    chunks: 'all',
-                    enforce: true,
-                },
                 react: {
                     test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
                     name: 'react',
@@ -51,7 +44,7 @@ const createBundledDeploy = (settings: Settings): Configuration => ({
         }
     },
     output: {
-        filename: `bundle.[name].${settings.app.version}.[hash].min.js`,
+        filename: `bundle.[name].${settings.app.version}.[fullhash].min.js`,
     },
     devtool: 'source-map',
     plugins: [],
@@ -59,17 +52,15 @@ const createBundledDeploy = (settings: Settings): Configuration => ({
 
 const createHMRDeploy = (settings: Settings): Configuration & { devServer: DevServerConfiguration } => ({
     mode: 'development',
-    module: {
-        rules: []
-    },
-    entry: [settings.entry.relative],
     devServer: {
         hot: true,
-        historyApiFallback: {
-            disableDotRule: true
-        },
+        // historyApiFallback: {
+        //     disableDotRule: true
+        // },
         host: settings.devServer.host,
-        port: settings.devServer.port
+        port: settings.devServer.port,
+        open: false,
+        
     },
     optimization: {
         moduleIds: 'named',

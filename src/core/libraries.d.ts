@@ -9,13 +9,11 @@
  * Global ProvidePlugin (webpack) libraries
  */
 
-import type _Ant from 'antd'
 import type _React from 'react'
 import type _ReactDOM from 'react-dom'
 import type _Redux from 'redux'
 
 declare global {
-    const Ant: typeof _Ant
     const React: typeof _React
     const ReactDOM: typeof _ReactDOM
     const Redux: typeof _Redux

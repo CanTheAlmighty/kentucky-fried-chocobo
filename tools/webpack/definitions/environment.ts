@@ -7,8 +7,6 @@
  * ----------------------------------------------------------------
  */
 
-import {  } from 'webpack'
-
 type EnviromentRaw = Partial<Record<string, string>>
 
 interface Environment {
