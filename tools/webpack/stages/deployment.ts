@@ -53,16 +53,17 @@ const createBundledDeploy = (settings: Settings): Configuration => ({
 const createHMRDeploy = (settings: Settings): Configuration & { devServer: DevServerConfiguration } => ({
     mode: 'development',
     devServer: {
-        hot: true,
-        // historyApiFallback: {
-        //     disableDotRule: true
-        // },
+        hot: 'only',
+        historyApiFallback: {
+            disableDotRule: true
+        },
         host: settings.devServer.host,
         port: settings.devServer.port,
         open: false,
         
     },
     optimization: {
+        minimize: false,
         moduleIds: 'named',
         usedExports: settings.optimization.codeUsedExports,
     },

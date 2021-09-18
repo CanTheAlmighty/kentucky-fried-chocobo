@@ -8,6 +8,7 @@
  */
 
 const Application: React.FC = () => {
+    console.log('RENDER APPLICATION!?!?!?!')
     return <div>Hello World</div>
 }
 

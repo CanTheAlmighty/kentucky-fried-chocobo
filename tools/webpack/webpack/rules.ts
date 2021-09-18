@@ -12,7 +12,6 @@ import { RuleSetRule } from 'webpack'
 
 // Webpack Loaders
 import { loader as MiniCSSLoader } from 'mini-css-extract-plugin'
-import ReactRefreshTypeScript from 'react-refresh-typescript'
 
 // Plugin Specifics
 import { createCompileTimeDirectives } from './pluginDefine'
@@ -33,6 +32,7 @@ const createRules = (settings: Settings): RuleSetRule[] => ([
     },
     {
         test: /\.js$/,
+        exclude: /node_modules/,
         use: [
             {
                 loader: 'babel-loader',
@@ -46,40 +46,19 @@ const createRules = (settings: Settings): RuleSetRule[] => ([
                 options: createCompileTimeDirectives(settings)
             }
         ],
-        exclude: /node_modules/,
     },
     // Typescript
     {
         test: /\.tsx?$/,
+        exclude: /node_modules/,
         use: [
-            {
+            ...(settings.deployment === 'bundled' ? [{
                 loader: 'babel-loader',
-                options: {
-                    configFile: settings.configs.babelConfig,
-                    plugins: [
-                        [
-                            "module-resolver", {
-                                "root": ["."],
-                                "alias": <Record<string, string>>{
-                                    "@Application": "./src/Application",
-                                    "@Router": "./src/Router",
-                                    "@api": "./src/api",
-                                    "@bundle/*": "./bundle/*",
-                                    "@components": "./src/components",
-                                    "@resources": "./src/resources",
-                                    "@hooks/*": "./src/hooks/*",
-                                    "@screens": "./src/screens",
-                                    "@service/*": "src/service/*",
-                                    "@state": "./src/state",
-                                    "@styles": "./src/styles",
-                                    "@util": "./src/util",
-                                    "@typings/*": "./src/typings/*",
-                                },
-                            }
-                        ]
-                    ]
-                },
-            },
+                    options: {
+                        configFile: settings.configs.babelConfig,
+                    },
+                }] : 
+            []),
             {
                 loader: 'webpack-preprocessor-loader',
                 options: createCompileTimeDirectives(settings)
@@ -91,9 +70,9 @@ const createRules = (settings: Settings): RuleSetRule[] => ([
                     projectReferences: true,
                     compilerOptions: {
                         getCustomTransformers: settings.deployment === 'hot' ? () => ({
-                            before: ReactRefreshTypeScript(),
+                            before: [require('react-refresh-typescript')()],
                         }) : undefined,
-                        transpileOnly: settings.deployment === 'hot',
+                        // transpileOnly: settings.deployment === 'hot',
                         // paths: {
                         //     '@bundle/*': [settings.folders.bundle]
                         // }

@@ -7,10 +7,14 @@
  * ----------------------------------------------------------------
  */
 
+import { Application } from '../Application'
+
 // Root of the app on html
 const root: HTMLElement | null = document.getElementById('root')
 
-const FakeApp: React.FC = () => <div>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</div>
+const RenderableApplication: React.FC = () => <div>
+    <Application />
+</div>
 
 // Render the app
-ReactDOM.render(<FakeApp />, root)
+ReactDOM.render(<RenderableApplication />, root)

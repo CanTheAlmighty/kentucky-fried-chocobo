@@ -1083,6 +1083,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/core-js@^2.5.5":
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/@types/core-js/-/core-js-2.5.5.tgz#dc5a013ee0b23bd5ac126403854fadabb4f24f75"
+  integrity sha512-C4vwOHrhsvxn7UFyk4NDQNUpgNKdWsT/bL39UWyD75KSEOObZSKa9mYDOCM5FGeJG2qtbG0XiEbUKND2+j0WOg==
+
 "@types/eslint-scope@^3.7.0":
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.1.tgz#8dc390a7b4f9dd9f1284629efce982e41612116e"
@@ -2210,6 +2215,11 @@ core-js-pure@^3.8.1:
   version "3.17.3"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.17.3.tgz#98ea3587188ab7ef4695db6518eeb71aec42604a"
   integrity sha512-YusrqwiOTTn8058JDa0cv9unbXdIiIgcgI9gXso0ey4WgkFLd3lYlV9rp9n7nDCsYxXsMDTjA4m1h3T348mdlQ==
+
+core-js@3:
+  version "3.17.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.17.3.tgz#8e8bd20e91df9951e903cabe91f9af4a0895bc1e"
+  integrity sha512-lyvajs+wd8N1hXfzob1LdOCCHFU4bGMbqqmLn1Q4QlCpDqWPpGf+p0nj+LNrvDDG33j0hZXw2nsvvVpHysxyNw==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -6345,6 +6355,11 @@ type-fest@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.11.0.tgz#97abf0872310fed88a5c466b25681576145e33f1"
   integrity sha512-OdjXJxnCN1AvyLSzeKIgXTXxV+99ZuXl3Hpo9XpJAv9MBcHrrJOQ5kV7ypXOuQie+AmWG25hLbiKdwYTifzcfQ==
+
+type-fest@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.3.3.tgz#2d3b07dacd3c14f4a200fb9f8e616d742ccc56a3"
+  integrity sha512-4r1ygCTovO9M+cJOdhlit7JkDmMgYwOXmttU1Nd/9a5UY8oebN0+wN/b5N5i/f8aQ/pTDS2oQ3CBxnu+/1p4aA==
 
 type-is@~1.6.17, type-is@~1.6.18:
   version "1.6.18"

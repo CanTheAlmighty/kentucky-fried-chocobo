@@ -11,7 +11,7 @@
                 "targets": {
                     "chrome": "41",
                     "ie": "11",
-                    "ios": "9"
+                    "ios": "10"
                 },
                 "useBuiltIns": "usage",
                 "corejs": 3

@@ -17,7 +17,7 @@ import { createAtlas } from '@util/image/Atlas'
 namespace FruitIcon {
     export type Fruit = 'apple' | 'pear' | 'grape' | 'lemon' | 'raspberry' | 'pineapple' | 'plum'
 
-    export interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
+    export interface Props extends React.HTMLAttributes<HTMLDivElement> {
         fruit: Fruit
     }
 }
@@ -25,10 +25,16 @@ namespace FruitIcon {
 const Atlas = createAtlas<FruitIcon.Fruit>({ cols: 4, size: createSize(72, 72), keys: ['apple', 'pear', 'grape', 'lemon', 'raspberry', 'pineapple', 'plum'] })
 
 const FruitIcon: React.FC<FruitIcon.Props> = (props) => {
-    const { fruit, src, style, width, height, ...rest } = props
+    const { fruit, style, ...rest } = props
     const frame = Atlas[props.fruit]
 
-    return <img src={ Image.src } style={{ backgroundPosition: `${frame.origin.x}px ${frame.origin.y}px`, ...style }} width={ frame.size.width } height={ frame.size.height } { ...rest } />
+    return <div style={{ 
+        backgroundImage: `url(${ Image.src })`,
+        backgroundPosition: `${frame.origin.x}px ${frame.origin.y}px`,
+        width: frame.size.width,
+        height: frame.size.height,
+        ...style
+    }} { ...rest } />
 }
 
 export { FruitIcon }
